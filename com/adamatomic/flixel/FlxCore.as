@@ -304,6 +304,13 @@ package com.adamatomic.flixel
 			dead = true;
 		}
 		
+		//@desc		Call this function to respawn a sprite after it has been killed
+		virtual public function spawn():void
+		{
+			exists = true;
+			dead = false;
+		}
+		
 		//@desc		Tells this object to flicker for the number of seconds requested (0 = infinite, negative number tells it to stop)
 		public function flicker(Duration:Number=1):void { _flickerTimer = Duration; if(_flickerTimer < 0) { _flicker = false; visible = true; } }
 		
