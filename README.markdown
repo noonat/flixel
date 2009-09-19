@@ -1,8 +1,10 @@
-This is an unofficial fork of Adam Atomic's [Flixel](http://flixel.org/). It is not a pure mirror: I've made some customizations.
+This is an unofficial fork of Adam Atomic's [Flixel](http://flixel.org/).
 
-# LICENSE
+It is not a pure mirror. I've made some customizations.
 
 Flixel's license, duplicated here:
+
+# LICENSE
 
 Copyright (c) 2009 Adam 'Atomic' Saltsman
 
