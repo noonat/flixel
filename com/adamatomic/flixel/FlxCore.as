@@ -5,6 +5,9 @@ package com.adamatomic.flixel
 	//@desc		This is the base class for most of the display objects (FlxSprite, FlxText, etc).  It includes some very simple basic attributes about game objects.
 	public class FlxCore
 	{
+		public static const LEFT_SIDE:int = 0;
+		public static const RIGHT_SIDE:int = 1;
+		 
 		//@desc	Kind of a global on/off switch for any objects descended from FlxCore
 		public var exists:Boolean;
 		//@desc	If an object is not alive, the game loop will not automatically call update() on it
@@ -144,7 +147,7 @@ package com.adamatomic.flixel
 				{
 					if(overlapsPoint(Spr.x,Spr.y + (Spr.height>>1)))
 					{
-						if(Spr.hitWall())
+						if(Spr.hitWall(RIGHT_SIDE))
 							Spr.x = x + width;
 					}
 					else
@@ -154,7 +157,7 @@ package com.adamatomic.flixel
 				{
 					if(overlapsPoint(Spr.x + Spr.width,Spr.y + (Spr.height>>1)))
 					{
-						if(Spr.hitWall())
+						if(Spr.hitWall(LEFT_SIDE))
 							Spr.x = x - Spr.width;
 					}
 					else
@@ -167,7 +170,7 @@ package com.adamatomic.flixel
 				{
 					if(overlapsPoint(Spr.x,Spr.y + (Spr.height>>1)))
 					{
-						if(Spr.hitWall())
+						if(Spr.hitWall(RIGHT_SIDE))
 							Spr.x = x + width;
 					}
 					else
@@ -177,7 +180,7 @@ package com.adamatomic.flixel
 				{
 					if(overlapsPoint(Spr.x + Spr.width,Spr.y + (Spr.height>>1)))
 					{
-						if(Spr.hitWall())
+						if(Spr.hitWall(LEFT_SIDE))
 							Spr.x = x - Spr.width;
 					}
 					else
@@ -229,9 +232,9 @@ package com.adamatomic.flixel
 					{
 						if((Spr.y + Spr.height - bias > y) && (Spr.y + bias < y + height))
 						{
-							if((Spr.velocity.x > 0) && (Spr.x + Spr.width > x) && (Spr.x + Spr.width < x + width) && Spr.hitWall())
+							if((Spr.velocity.x > 0) && (Spr.x + Spr.width > x) && (Spr.x + Spr.width < x + width) && Spr.hitWall(LEFT_SIDE))
 								Spr.x = x - Spr.width;
-							else if((Spr.velocity.x < 0) && (Spr.x > x) && (Spr.x < x + width) && Spr.hitWall())
+							else if((Spr.velocity.x < 0) && (Spr.x > x) && (Spr.x < x + width) && Spr.hitWall(RIGHT_SIDE))
 								Spr.x = x + width;
 						}
 					}
@@ -242,9 +245,9 @@ package com.adamatomic.flixel
 					{
 						if((Spr.y + Spr.height - bias > y) && (Spr.y + bias < y + height))
 						{
-							if((Spr.velocity.x > 0) && (Spr.x + Spr.width > x) && (Spr.x + Spr.width < x + width) && Spr.hitWall())
+							if((Spr.velocity.x > 0) && (Spr.x + Spr.width > x) && (Spr.x + Spr.width < x + width) && Spr.hitWall(LEFT_SIDE))
 								Spr.x = x - Spr.width;
-							else if((Spr.velocity.x < 0) && (Spr.x > x) && (Spr.x < x + width) && Spr.hitWall())
+							else if((Spr.velocity.x < 0) && (Spr.x > x) && (Spr.x < x + width) && Spr.hitWall(RIGHT_SIDE))
 								Spr.x = x + width;
 						}
 					}
@@ -274,9 +277,9 @@ package com.adamatomic.flixel
 			{
 				if((Spr.y + Spr.height - bias > y) && (Spr.y + bias < y + height))
 				{
-					if((Spr.velocity.x > 0) && (Spr.x + Spr.width > x) && (Spr.x + Spr.width < x + width) && Spr.hitWall())
+					if((Spr.velocity.x > 0) && (Spr.x + Spr.width > x) && (Spr.x + Spr.width < x + width) && Spr.hitWall(LEFT_SIDE))
 						Spr.x = x - Spr.width;
-					else if((Spr.velocity.x < 0) && (Spr.x > x) && (Spr.x < x + width) && Spr.hitWall())
+					else if((Spr.velocity.x < 0) && (Spr.x > x) && (Spr.x < x + width) && Spr.hitWall(RIGHT_SIDE))
 						Spr.x = x + width;
 				}
 			}
@@ -284,7 +287,7 @@ package com.adamatomic.flixel
 		
 		//@desc		Called when this object collides with a FlxBlock on one of its sides
 		//@return	Whether you wish the FlxBlock to collide with it or not
-		virtual public function hitWall():Boolean { return true; }
+		virtual public function hitWall(Side:int):Boolean { return true; }
 		
 		//@desc		Called when this object collides with the top of a FlxBlock
 		//@return	Whether you wish the FlxBlock to collide with it or not
