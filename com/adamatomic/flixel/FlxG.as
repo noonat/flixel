@@ -129,9 +129,8 @@ package com.adamatomic.flixel
 		//@param	Volume			How loud to play it (0 to 1)
 		static public function play(SoundEffect:Class,Volume:Number=1):void
 		{
-			if (!(SoundEffect is Sound))
-				SoundEffect = new SoundEffect;
-			SoundEffect.play(0,0,new SoundTransform(Volume*_muted*_volume*_masterVolume));
+			var sound:Sound = SoundEffect is Sound ? SoundEffect as Sound : new SoundEffect;
+			sound.play(0,0,new SoundTransform(Volume*_muted*_volume*_masterVolume));
 		}
 		
 		//@desc		Plays or resumes the music file set up using setMusic()

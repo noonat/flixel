@@ -22,7 +22,7 @@ package com.adamatomic.Mode
 			else super.update();
 		}
 		
-		override public function hitWall():Boolean { hurt(0); return true; }
+		override public function hitWall(Side:int):Boolean { hurt(0); return true; }
 		override public function hitFloor():Boolean { hurt(0); return true; }
 		override public function hitCeiling():Boolean { hurt(0); return true; }
 		override public function hurt(Damage:Number):void
