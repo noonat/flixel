@@ -1,6 +1,10 @@
 This is an unofficial fork of Adam Atomic's [Flixel](http://flixel.org/).
 
-It is not a pure mirror. I've made some customizations.
+It is not a pure mirror. I've made some customizations:
+* FlxButton.alpha and FlxText.alpha
+* FlxCore.hitWall() now passes a Side:int parameter, which will be FlxCore.LEFT\_SIDE or FlxCore.RIGHT\_SIDE
+* FlxCore.spawn() reverses the effects of FlxCore.kill()
+* FlxG.play() optionally accepts an instance of Sound as the first parameter, as an alternative to passing a class
 
 Flixel's license, duplicated here:
 
