@@ -5,6 +5,7 @@ package com.adamatomic.flixel
 	//@desc		A simple button class that calls a function when mouse-clicked
 	public class FlxButton extends FlxCore
 	{
+		private var _alpha:Number;
 		private var _onToggle:Boolean;
 		private var _off:FlxSprite;
 		private var _on:FlxSprite;
@@ -23,7 +24,8 @@ package com.adamatomic.flixel
 		//@param	ImageOn		A FlxSprite object to use for the button background when highlighted (optional)
 		//@param	Text		A FlxText object to use to display text on this button (optional)
 		//@param	TextOn		A FlxText object that is used when the button is highlighted (optional)
-		public function FlxButton(X:int,Y:int,Image:FlxSprite,Callback:Function,ImageOn:FlxSprite=null,Text:FlxText=null,TextOn:FlxText=null)
+		//@param Alpha		Alpha value for the button
+		public function FlxButton(X:int,Y:int,Image:FlxSprite,Callback:Function,ImageOn:FlxSprite=null,Text:FlxText=null,TextOn:FlxText=null,Alpha:Number=1.0)
 		{
 			super();
 			x = X;
@@ -38,6 +40,7 @@ package com.adamatomic.flixel
 			else _onT = TextOn;
 			if(_offT != null) _offTO = new Point(_offT.x,_offT.y);
 			if(_onT != null) _onTO = new Point(_onT.x,_onT.y);
+			_alpha = Alpha;
 			
 			_off.scrollFactor = scrollFactor;
 			_on.scrollFactor = scrollFactor;
@@ -93,6 +96,22 @@ package com.adamatomic.flixel
 				if((_offT != null) && _offT.exists && _offT.visible) _offT.render();
 				if((_onT != null) && _onT.exists && _onT.visible) _onT.render();
 			}
+		}
+		
+		public function get alpha():Number
+		{
+			return _alpha;
+		}
+		
+		public function set alpha(value:Number):void
+		{
+			if (value < 0.0)
+				value = 0.0;
+			else if (value > 1.0)
+				value = 1.0;
+			_alpha = value;
+			_off.alpha = _offT.alpha = _alpha;
+			_on.alpha = _onT.alpha = _alpha;
 		}
 		
 		//@desc		Call this function from your callback to toggle the button off, like a checkbox
